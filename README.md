@@ -8,7 +8,6 @@ This scripts require python3.5+
 See requirements.txt for a dependencies requirements.
 
 # How to run
-
 ```bash
 $python check_sites_health.py urls.txt
 Checking for a site http://google.com
