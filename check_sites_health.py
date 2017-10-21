@@ -14,9 +14,7 @@ def load_urls4check(path):
 
 def is_server_respond_with_200(url):
 
-    status_ok = 200
-
-    if requests.get(url).status_code == status_ok:
+    if requests.get(url).status_code == requests.codes.ok:
         return True
 
     return False
