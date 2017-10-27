@@ -2,6 +2,7 @@ import sys
 import requests
 import whois
 from datetime import datetime
+from urllib.parse import urlparse
 
 
 def load_urls4check(path):
@@ -14,10 +15,7 @@ def load_urls4check(path):
 
 def is_server_respond_with_200(url):
 
-    if requests.get(url).status_code == requests.codes.ok:
-        return True
-
-    return False
+    return requests.get(url).status_code == requests.codes.ok
 
 
 def get_domain_expiration_date(domain_name):
@@ -48,7 +46,7 @@ if __name__ == '__main__':
         else:
             print('<WARNING>\tHTTP Status is not 200')
 
-        domain_name = url.split('//')[-1].split('/')[0]
+        domain_name = urlparse(url).netloc
 
         days_to_expire = (
             get_domain_expiration_date(domain_name) - datetime.today()
