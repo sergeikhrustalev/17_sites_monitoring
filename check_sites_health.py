@@ -10,7 +10,7 @@ def load_urls4check(path):
     with open(path) as url_file:
         urls_from_file = url_file.readlines()
 
-    return [url_list.strip() for url_list in urls_from_file]
+    return [url.strip() for url in urls_from_file if url != '\n']
 
 
 def is_server_respond_with_200(url):
@@ -21,11 +21,7 @@ def is_server_respond_with_200(url):
 def get_domain_expiration_date(domain_name):
 
     exp_date = whois.whois(domain_name).expiration_date
-
-    if isinstance(exp_date, list):
-        exp_date = exp_date[0]
-
-    return exp_date
+    return exp_date[0] if isinstance(exp_date, list) else exp_date
 
 
 if __name__ == '__main__':
